@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "586272058439",
+    "project_id": "flashcard-7eea5",
+    "storage_bucket": "flashcard-7eea5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586272058439:android:36ca3df08bc5676f8ed562",
+        "android_client_info": {
+          "package_name": "david.raya.flashcards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586272058439-jqh1evc3vjq46mje35ln3m0o4905a86g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkhR8wDQ0uai88hqpGQWxI5ti0rUxYG-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586272058439-jqh1evc3vjq46mje35ln3m0o4905a86g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
