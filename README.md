@@ -5,7 +5,7 @@ Designed by:
 * [Kevin Castro](https://github.com/kevincastrochavez)
 * [Aiden Foushee]()
 * [David Raya]()
-* [Aiden Patterson]()
+* [Aiden Patterson](https://github.com/Aiden-Patterson)
 * [Claudio Parra](https://github.com/cdp50)
 * [Efrain Gomez](https://github.com/EfraOut)
 
