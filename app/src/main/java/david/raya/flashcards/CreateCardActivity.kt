@@ -18,7 +18,7 @@ class CreateCardActivity : AppCompatActivity() {
         var finish_card = findViewById<Button>(R.id.btn_finish_card)
 
         finish_card.setOnClickListener {
-            val finishIntent = Intent(this@CreateCardActivity, MainActivity::class.java)
+            val finishIntent = Intent(this@CreateCardActivity, DecksList::class.java)
             startActivity(finishIntent)
         }
 
