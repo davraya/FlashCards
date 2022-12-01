@@ -1,10 +1,9 @@
 package david.raya.flashcards
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -22,19 +21,22 @@ class CreateDeckActivity : AppCompatActivity() {
 
         var create_deck = findViewById<Button>(R.id.btn_create_deck)
         create_deck.setOnClickListener {
-            createBoard();
+            createDeck();
         }
     }
 
-    private fun createBoard() {
+    private fun createDeck() {
         var input = findViewById<AppCompatEditText>(R.id.et_board_name).text.toString()
         val deck = hashMapOf(
             "deckName" to input,
         )
 
         val db = Firebase.firestore
-        db.collection("decks").add(deck).addOnSuccessListener { documentReference ->
-            Log.d("Hello", "Document added")
+        db.collection("decks").document(input).set(deck).addOnSuccessListener { documentReference ->
+            var deckName = input;
+            val cardIntent = Intent(this@CreateDeckActivity, CreateCardActivity::class.java)
+            cardIntent.putExtra("deckName", deckName)
+            startActivity(cardIntent)
         }
     }
 }
