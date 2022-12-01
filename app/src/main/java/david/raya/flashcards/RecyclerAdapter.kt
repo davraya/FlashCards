@@ -13,26 +13,30 @@ import com.google.firebase.ktx.Firebase
 class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     val db = Firebase.firestore
     private var titles = arrayOf("One", "Two", "Three")
+    var decksArray = mutableListOf<String>()
 
-    fun getDecksFromDb(): Array<Any> {
-        var decksArray = arrayOf<Any>()
+    init {
+        getDecksFromDb()
+    }
 
+    fun getDecksFromDb() {
         db.collection("decks")
             .get()
             .addOnSuccessListener { documents ->
-                System.out.println(documents.javaClass.name)
-//                for (document in documents) {
-//                    decksArray += document.data
-//                }
+//                System.out.println(documents.javaClass.name)
+                for (document in documents) {
+                    decksArray.add(document.data["deckName"] as String)
+                }
 //
-//                for (document in decksArray) {
-//                    Log.d("Result", "${document}")
-//                }
+                for (document in documents) {
+                    Log.d("Result", "${document.data["deckName"]}")
+                }
+
+                notifyDataSetChanged()
             }
             .addOnFailureListener { exception ->
                 Log.w(ContentValues.TAG, "Error getting documents.", exception)
             }
-        return decksArray
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
@@ -41,18 +45,16 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-//        var decksArray = this.getDecksFromDb()
-        return titles.size
+        return decksArray.size
     }
 
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
-        var decksArray = this.getDecksFromDb()
 
 //        for (document in decksArray) {
 //            Log.d("Bind", "${document}")
 //        }
 
-        holder.itemTitle.text = titles[position]
+        holder.itemTitle.text = decksArray[position]
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
