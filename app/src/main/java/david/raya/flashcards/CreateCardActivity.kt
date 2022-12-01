@@ -47,6 +47,7 @@ class CreateCardActivity : AppCompatActivity() {
 
         val db = Firebase.firestore
         db.collection("decks").document(deckName).collection(deckName).document(inputQuestionText).set(card).addOnSuccessListener { documentReference ->
+//            Create toast
             inputQuestion.text?.clear()
             inputAnswer.text?.clear()
         }

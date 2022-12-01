@@ -49,11 +49,6 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
-
-//        for (document in decksArray) {
-//            Log.d("Bind", "${document}")
-//        }
-
         holder.itemTitle.text = decksArray[position]
     }
 
