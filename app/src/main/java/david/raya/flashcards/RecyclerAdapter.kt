@@ -56,8 +56,9 @@ class RecyclerAdapter(var context: Context): RecyclerView.Adapter<RecyclerAdapte
 
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
         holder.itemTitle.text = decksArray[position]
+        // Listening for deck click
         holder.itemView.setOnClickListener {
-            Log.d("Click", "It was clicked")
+            // creating an intent and passing context since this is not an activity
             var intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
         }
