@@ -10,15 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
+// This class is in charge of making the RecyclerView possible for the app.
 class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     val db = Firebase.firestore
     private var titles = arrayOf("One", "Two", "Three")
     var decksArray = mutableListOf<String>()
 
+    // Start by getting all the information from the database.
     init {
         getDecksFromDb()
     }
 
+    // Method that interacts with the database and gets all the info that contains.
     fun getDecksFromDb() {
         db.collection("decks")
             .get()
@@ -39,15 +42,18 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
             }
     }
 
+    // How the ViewGroup is going to behave.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.deck_layout, parent, false)
         return ViewHolder(v)
     }
 
+    // Gets the total of decks that were extracted from the database.
     override fun getItemCount(): Int {
         return decksArray.size
     }
 
+    // How RecyclerView is going to behave.
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
         holder.itemTitle.text = decksArray[position]
     }
