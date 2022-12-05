@@ -59,7 +59,7 @@ class RecyclerAdapter(var context: Context): RecyclerView.Adapter<RecyclerAdapte
         // Listening for deck click
         holder.itemView.setOnClickListener {
             // creating an intent and passing context since this is not an activity
-            var intent = Intent(context, MainActivity::class.java)
+            var intent = Intent(context, CardsList::class.java)
             context.startActivity(intent)
         }
     }
