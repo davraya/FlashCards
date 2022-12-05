@@ -1,19 +1,24 @@
 package david.raya.flashcards
 
 import android.content.ContentValues
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(var context: Context): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     val db = Firebase.firestore
     private var titles = arrayOf("One", "Two", "Three")
     var decksArray = mutableListOf<String>()
+    var position: Int = 0
+//    var intent : Intent(this@RecyclerAdapter, )
 
     init {
         getDecksFromDb()
@@ -41,6 +46,7 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.deck_layout, parent, false)
+//        Log.d("Object", v.toString())
         return ViewHolder(v)
     }
 
@@ -50,6 +56,11 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
         holder.itemTitle.text = decksArray[position]
+        holder.itemView.setOnClickListener {
+            Log.d("Click", "It was clicked")
+            var intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -59,4 +70,8 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
             itemTitle = itemView.findViewById(R.id.deck_text_name)
         }
     }
+
+//    public interface OnDeckListener {
+//        void onDeckClick(int position);
+//    }
 }

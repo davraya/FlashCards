@@ -23,23 +23,12 @@ class DecksList : AppCompatActivity() {
         var recyclerV = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerV.layoutManager = layoutManager
 
-        adapter = RecyclerAdapter()
+        adapter = RecyclerAdapter(this)
         recyclerV.adapter = adapter
 
         val fab: View = findViewById(R.id.fab_create_board)
         fab.setOnClickListener { view ->
             startActivity(Intent(this@DecksList, CreateDeckActivity::class.java))
         }
-
-        val db = Firebase.firestore
-
-        db.collection("decks")
-            .get()
-            .addOnSuccessListener { result ->
-
-            }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
-            }
     }
 }
