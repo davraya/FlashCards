@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
+// This class allows the user to create a new deck, and it is then stored in the database.
 class CreateDeckActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,7 @@ class CreateDeckActivity : AppCompatActivity() {
         }
     }
 
+    // The text where the user will enter the title of the deck
     private fun createDeck() {
         var input = findViewById<AppCompatEditText>(R.id.et_board_name).text.toString()
         val deck = hashMapOf(

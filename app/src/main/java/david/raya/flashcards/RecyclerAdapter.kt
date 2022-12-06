@@ -17,10 +17,12 @@ class RecyclerAdapter(var context: Context): RecyclerView.Adapter<RecyclerAdapte
     val db = Firebase.firestore
     var decksArray = mutableListOf<String>()
 
+    // Start by getting all the information from the database.
     init {
         getDecksFromDb()
     }
 
+    // Method that interacts with the database and gets all the info that contains.
     fun getDecksFromDb() {
         db.collection("decks")
             .get()
@@ -37,15 +39,18 @@ class RecyclerAdapter(var context: Context): RecyclerView.Adapter<RecyclerAdapte
             }
     }
 
+    // How the ViewGroup is going to behave.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.deck_layout, parent, false)
         return ViewHolder(v)
     }
 
+    // Gets the total of decks that were extracted from the database.
     override fun getItemCount(): Int {
         return decksArray.size
     }
 
+    // How RecyclerView is going to behave.
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
         holder.itemTitle.text = decksArray[position]
         // Listening for deck click
