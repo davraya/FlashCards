@@ -10,6 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FlashCards">
         <activity
+            android:name=".CardsList"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".CreateCardActivity"
             android:exported="false">
             <meta-data

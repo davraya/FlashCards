@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlin.math.log
 
 class CreateCardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,9 @@ class CreateCardActivity : AppCompatActivity() {
         val extras = intent.extras
         if (extras != null) {
             val deckName = extras.getString("deckName")
+            if (deckName != null) {
+                Log.d("additional card", deckName)
+            }
             if (deckName != null) {
                 create_card.setOnClickListener {
                     createCard(deckName);
