@@ -20,14 +20,19 @@ class DecksList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_decks_list)
 
+        // Class that tells adapters how to arrange those items
         layoutManager = LinearLayoutManager(this)
         var recyclerV = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerV.layoutManager = layoutManager
 
+        // Defining adapter
         adapter = RecyclerAdapter(this)
+
+        // Injecting layoutManager and adapter into the element
+        recyclerV.layoutManager = layoutManager
         recyclerV.adapter = adapter
 
         val fab: View = findViewById(R.id.fab_create_board)
+        // Takes you to create a card
         fab.setOnClickListener { view ->
             startActivity(Intent(this@DecksList, CreateDeckActivity::class.java))
         }
