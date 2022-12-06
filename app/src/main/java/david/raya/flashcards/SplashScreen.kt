@@ -11,8 +11,10 @@ import com.google.firebase.ktx.Firebase
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Loads the Splash screen from the xml
         setContentView(R.layout.activity_splash_screen)
 
+        // After 2.5 seconds, it redirects you to the DeckList activity
         Handler().postDelayed({
             startActivity(Intent(this, DecksList::class.java))
             finish()
