@@ -16,7 +16,6 @@ import com.google.firebase.ktx.Firebase
 class RecyclerAdapter(var context: Context): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     val db = Firebase.firestore
     var decksArray = mutableListOf<String>()
-    var position: Int = 0
 
     init {
         getDecksFromDb()
@@ -30,7 +29,7 @@ class RecyclerAdapter(var context: Context): RecyclerView.Adapter<RecyclerAdapte
                 for (document in documents) {
                     decksArray.add(document.data["deckName"] as String)
                 }
-//
+
                 for (document in documents) {
                     Log.d("Result", "${document.data["deckName"]}")
                 }
@@ -44,7 +43,6 @@ class RecyclerAdapter(var context: Context): RecyclerView.Adapter<RecyclerAdapte
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.deck_layout, parent, false)
-//        Log.d("Object", v.toString())
         return ViewHolder(v)
     }
 
@@ -58,6 +56,7 @@ class RecyclerAdapter(var context: Context): RecyclerView.Adapter<RecyclerAdapte
         holder.itemView.setOnClickListener {
             // creating an intent and passing context since this is not an activity
             var intent = Intent(context, CardsList::class.java)
+            intent.putExtra("deckId", decksArray[position])
             context.startActivity(intent)
         }
     }
@@ -69,8 +68,4 @@ class RecyclerAdapter(var context: Context): RecyclerView.Adapter<RecyclerAdapte
             itemTitle = itemView.findViewById(R.id.deck_text_name)
         }
     }
-
-//    public interface OnDeckListener {
-//        void onDeckClick(int position);
-//    }
 }

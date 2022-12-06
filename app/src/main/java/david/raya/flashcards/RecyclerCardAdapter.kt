@@ -1,6 +1,8 @@
 package david.raya.flashcards
 
+import android.app.Activity
 import android.content.ContentValues
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,38 +12,42 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class RecyclerCardAdapter: RecyclerView.Adapter<RecyclerCardAdapter.ViewHolder>() {
+
+class RecyclerCardAdapter(var context: Context): RecyclerView.Adapter<RecyclerCardAdapter.ViewHolder>() {
     val db = Firebase.firestore
-    private var cardQuestions  = arrayOf("First Question", "Second Question", "Third Question")
-    private var cardAnswers  = arrayOf("First Answer", "Second Answer", "Third Answer")
     var questionsArray = mutableListOf<String>()
     var answerssArray = mutableListOf<String>()
+    val intent = (context as Activity).intent
+    val extras = intent.extras
 
     init {
         getCardsFromDb()
     }
 
     fun getCardsFromDb() {
-        db.collection("decks")
-            .document("Math")
-            .collection("Math")
-            .get()
-            .addOnSuccessListener { documents ->
-//                System.out.println(documents.javaClass.name)
-                for (document in documents) {
-                    questionsArray.add(document.data["cardQuestion"] as String)
-                    answerssArray.add(document.data["cardAnswer"] as String)
-                }
-//
-                for (document in documents) {
-                    Log.d("Result", "${document.data}")
-                }
+        val deckId = extras?.getString("deckId")
+        if (deckId != null) {
+            Log.d("Deck Id", deckId)
+        }
 
-                notifyDataSetChanged()
-            }
-            .addOnFailureListener { exception ->
-                Log.w(ContentValues.TAG, "Error getting documents.", exception)
-            }
+        if (deckId != null) {
+            db.collection("decks")
+                .document(deckId)
+                .collection(deckId)
+                .get()
+                .addOnSuccessListener { documents ->
+    //                System.out.println(documents.javaClass.name)
+                    for (document in documents) {
+                        questionsArray.add(document.data["cardQuestion"] as String)
+                        answerssArray.add(document.data["cardAnswer"] as String)
+                    }
+
+                    notifyDataSetChanged()
+                }
+                .addOnFailureListener { exception ->
+                    Log.w(ContentValues.TAG, "Error getting documents.", exception)
+                }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerCardAdapter.ViewHolder {

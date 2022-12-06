@@ -17,7 +17,7 @@ class CardsList : AppCompatActivity() {
         var recyclerV = findViewById<RecyclerView>(R.id.recyclerCardView)
         recyclerV.layoutManager = layoutManager
 
-        adapter = RecyclerCardAdapter()
+        adapter = RecyclerCardAdapter(this)
         recyclerV.adapter = adapter
     }
 }
