@@ -15,10 +15,8 @@ import com.google.firebase.ktx.Firebase
 
 class RecyclerAdapter(var context: Context): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     val db = Firebase.firestore
-    private var titles = arrayOf("One", "Two", "Three")
     var decksArray = mutableListOf<String>()
     var position: Int = 0
-//    var intent : Intent(this@RecyclerAdapter, )
 
     init {
         getDecksFromDb()
