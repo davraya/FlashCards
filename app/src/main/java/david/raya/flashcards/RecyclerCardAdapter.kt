@@ -26,9 +26,6 @@ class RecyclerCardAdapter(var context: Context): RecyclerView.Adapter<RecyclerCa
 
     fun getCardsFromDb() {
         val deckId = extras?.getString("deckId")
-        if (deckId != null) {
-            Log.d("Deck Id", deckId)
-        }
 
         if (deckId != null) {
             db.collection("decks")
@@ -36,7 +33,6 @@ class RecyclerCardAdapter(var context: Context): RecyclerView.Adapter<RecyclerCa
                 .collection(deckId)
                 .get()
                 .addOnSuccessListener { documents ->
-    //                System.out.println(documents.javaClass.name)
                     for (document in documents) {
                         questionsArray.add(document.data["cardQuestion"] as String)
                         answerssArray.add(document.data["cardAnswer"] as String)

@@ -30,10 +30,6 @@ class RecyclerAdapter(var context: Context): RecyclerView.Adapter<RecyclerAdapte
                     decksArray.add(document.data["deckName"] as String)
                 }
 
-                for (document in documents) {
-                    Log.d("Result", "${document.data["deckName"]}")
-                }
-
                 notifyDataSetChanged()
             }
             .addOnFailureListener { exception ->
