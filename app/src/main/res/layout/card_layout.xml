@@ -6,10 +6,10 @@
     android:id="@+id/card_view"
     android:layout_margin="5dp"
     android:background="@drawable/card_shadow"
-    android:paddingBottom="40dp"
-    android:paddingRight="24dp"
-    android:paddingLeft="24dp"
-    android:paddingTop="40dp"
+    android:paddingBottom="20dp"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
     app:cardCornerRadius="10dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24dp"
-                android:textColor="#ff0000"
+                android:textColor="#3581b8"
                 android:lineHeight="24dp"
                 android:layout_marginBottom="10dp"
                 android:text="Question"/>
@@ -40,7 +40,7 @@
                 android:id="@+id/card_answer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#00ff00"
+                android:textColor="#fcb07e"
                 android:textSize="24dp"
                 android:lineHeight="24dp"
                 android:text="Answer"/>

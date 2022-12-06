@@ -74,9 +74,3 @@ class RecyclerCardAdapter(var context: Context): RecyclerView.Adapter<RecyclerCa
         }
     }
 }
-
-//class RecyclerCardAdapter: RecyclerView.Adapter<RecyclerCardAdapter.ViewHolder>() {
-//
-//
-//
-//}
